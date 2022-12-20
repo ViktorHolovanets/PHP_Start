@@ -1,0 +1,22 @@
+{
+    "name": "vendor/project",
+    "description": "my first project",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "dev-master",
+        "vlucas/phpdotenv": "5.5.x-dev"
+    },
+    "license": "BeerWare",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Viktor Holovanets",
+            "email": "victorgolova@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
