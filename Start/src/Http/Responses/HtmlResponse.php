@@ -1,24 +1,36 @@
 <?php
 
 namespace App\Http\Responses;
+use App\Controllers\ViewData\ViewData;
 
 class HtmlResponse extends AbstractResponse
 {
+    private array $dataview;
+    function __construct(){
+        $this->dataview=ViewData::getInstance()->viewdata;
+    }
+
     private function renderHead(): string
     {
         return "
         <head>
-            <title> My first site </title>
+            <title></title>
         </head>";
+        return sprintf("
+        <head>
+            <title>%s</title>
+        </head>
+        ", $this->dataview['title']);
+
     }
 
     private function renderHeader(): string
     {
-        return "
+        return sprintf("
         <header>
-            <h1>My first site</h1>
+            <h1>%s</h1>
         </header>
-        ";
+        ", $this->dataview['header']);
     }
 
     private  function renderMain(): string

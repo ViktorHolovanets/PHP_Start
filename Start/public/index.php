@@ -16,7 +16,6 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
 $dotenv->load();
 var_dump($_ENV['APP_NAME']);
 
-
 // Анализируем запрос - Request (POST, GET, COOKIE, FILES ...)
 $request = Request::getInstance();
 

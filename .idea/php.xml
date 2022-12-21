@@ -9,6 +9,18 @@
   <component name="PHPCodeSnifferOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/Start/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/Start/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/Start/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/Start/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/Start/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/Start/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/Start/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/Start/vendor/composer" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />

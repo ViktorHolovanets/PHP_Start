@@ -17,7 +17,7 @@ class FirstFormController
 
         $response->data['htmlBodyMain'] =
             "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>"
-            . "<div><label> Name: <input type='text' name = 'name' value='keeper'></label></div>"
+            . "<div><label> Name: <input type='text' name = 'name' value='Viktor'></label></div>"
             . "<div><label> Email: <input type='text' name = 'email'></label></div>"
             . "<div><label> Message: <textarea name = 'message'></textarea></label></div>"
             . "<div><select name='type'>
