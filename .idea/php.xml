@@ -19,11 +19,22 @@
       <path value="$PROJECT_DIR$/Start/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/Start/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/Start/vendor/composer" />
+      <path value="$PROJECT_DIR$/Start/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/Start/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/Start/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/Start/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/Start/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/Start/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/Start/vendor/autoload.php" />
+    </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />

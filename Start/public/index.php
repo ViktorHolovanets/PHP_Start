@@ -8,6 +8,7 @@
 require_once '../vendor/autoload.php';
 
 // Подключить необходимые классы
+use App\Controllers\Http\DBController;
 use App\Http\Requests\Request;
 use App\Http\Responses\AbstractResponse;
 use App\Http\Responses\ResponseTypesEnum;
@@ -15,6 +16,12 @@ use App\Http\Responses\ResponseTypesEnum;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
 $dotenv->load();
 var_dump($_ENV['APP_NAME']);
+
+
+$users=DBController::getInstance()->getInfoCategoryIsNotInCartForUser();
+if(!is_null($users))
+    DBController::getInstance()->Show($users);
+
 
 // Анализируем запрос - Request (POST, GET, COOKIE, FILES ...)
 $request = Request::getInstance();

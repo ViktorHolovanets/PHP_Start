@@ -10,6 +10,12 @@
       <excludeFolder url="file://$MODULE_DIR$/Start/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/Start/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/Start/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/Start/vendor/doctrine/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
