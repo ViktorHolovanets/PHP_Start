@@ -58,7 +58,7 @@ class DBController
             echo"</table>";
         }
     }
-    public  function  getAllUser():\Doctrine\DBAL\Result|null{
+    public  function  getAllUser():?\Doctrine\DBAL\Result{
         $this->queryBuilder
             ->select('id', 'name')
             ->from('user');
@@ -68,65 +68,19 @@ class DBController
             return null;
         }
     }
-    public  function  getFullInfoCart():\Doctrine\DBAL\Result|null{
-        $this->queryBuilder
-            ->select('u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"')
-            ->from('cart', 'c')
-            ->join('c', 'user', 'u', 'u.id=c.user_id')
-            ->join('c', 'product', 'pr', 'pr.id=c.product_id')
-            ->join('pr','category', 'cat', 'cat.id=pr.category_id');
-        try {
-            return $this->queryBuilder->executeQuery();
-        } catch (Exception $e) {
-            return null;
-        }
+    public  function  getFullInfoCart():?\Doctrine\DBAL\Result{
+        return $this->getFullInfo(['u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"']);
     }
-    public  function  getInfoCartOneUser(int $id=1):\Doctrine\DBAL\Result|null{
-        $this->queryBuilder
-            ->select('u.id','u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"')
-            ->from('cart', 'c')
-            ->join('c', 'user', 'u', 'u.id=c.user_id')
-            ->join('c', 'product', 'pr', 'pr.id=c.product_id')
-            ->join('pr','category', 'cat', 'cat.id=pr.category_id')
-            ->where('u.id=?')
-            ->setParameter(0, $id);
-        try {
-            return $this->queryBuilder->executeQuery();
-        } catch (Exception $e) {
-            return null;
-        }
+    public  function  getInfoCartOneUser(int $id=1):?\Doctrine\DBAL\Result{
+        return $this->getFullInfo(['u.id','u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"'],  $id);
     }
-    public  function  getInfoCategoryOneUser(int $id=1):\Doctrine\DBAL\Result|null{
-        $this->queryBuilder
-            ->select( 'cat.*')
-            ->from('cart', 'c')
-            ->join('c', 'user', 'u', 'u.id=c.user_id')
-            ->join('c', 'product', 'pr', 'pr.id=c.product_id')
-            ->join('pr','category', 'cat', 'cat.id=pr.category_id')
-            ->where('u.id=?')
-            ->setParameter(0, $id);
-        try {
-            return $this->queryBuilder->executeQuery();
-        } catch (Exception $e) {
-            return null;
-        }
+    public  function  getInfoCategoryOneUser(int $id=1):?\Doctrine\DBAL\Result{
+        return $this->getFullInfo(['cat.*'],  $id);
     }
-    public  function  getInfoUsersOneProduct(int $id=1):\Doctrine\DBAL\Result|null{
-        $this->queryBuilder
-            ->select( 'u.*')
-            ->from('cart', 'c')
-            ->join('c', 'user', 'u', 'u.id=c.user_id')
-            ->join('c', 'product', 'pr', 'pr.id=c.product_id')
-            ->join('pr','category', 'cat', 'cat.id=pr.category_id')
-            ->where('pr.id=?')
-            ->setParameter(0, $id);
-        try {
-            return $this->queryBuilder->executeQuery();
-        } catch (Exception $e) {
-            return null;
-        }
+    public  function  getInfoUsersOneProduct(int $id=1):?\Doctrine\DBAL\Result{
+        return $this->getFullInfo(['u.*'],  $id);
     }
-    public  function  getInfoCategoryIsNotInCartForUser(int $id=1):\Doctrine\DBAL\Result|null{
+    public  function  getInfoCategoryIsNotInCartForUser(int $id=1):?\Doctrine\DBAL\Result{
         $result=$this->getInfoCategoryOneUser($id);
 
         $param=array();
@@ -139,6 +93,25 @@ class DBController
             ->from('category', 'c')
             ->where('c.id<>?')
             ->setParameters($param)->executeQuery();
+
+    }
+    public  function  getFullInfo(array $arr, ?int $id=null): ?\Doctrine\DBAL\Result
+    {
+
+        try {
+           $this->queryBuilder
+                ->select($arr)
+                ->from('cart', 'c')
+                ->join('c', 'user', 'u', 'u.id=c.user_id')
+                ->join('c', 'product', 'pr', 'pr.id=c.product_id')
+                ->join('pr', 'category', 'cat', 'cat.id=pr.category_id');
+            if(!is_null($id))
+                $this->queryBuilder->where('u.id=?')
+                ->setParameter(0, $id);
+            return $this->queryBuilder->executeQuery();
+        } catch (Exception $e) {
+            return null;
+        }
 
     }
 }
