@@ -18,8 +18,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
 $dotenv->load();
 var_dump($_ENV['APP_NAME']);
 
-
-$users=DBController::getInstance()->getFullInfoCart();
+//$users=DBController::getInstance()->getInfoCartOneUser();
+$users=DbQuery_1::Query_10();
 if(!is_null($users))
     DBController::getInstance()->Show($users);
 

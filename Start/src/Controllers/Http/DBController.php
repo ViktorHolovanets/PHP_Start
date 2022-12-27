@@ -69,16 +69,32 @@ class DBController
         }
     }
     public  function  getFullInfoCart():?\Doctrine\DBAL\Result{
-        return $this->getFullInfo(['u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"']);
+        try {
+            return $this->getFullInfo(['u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"'])->executeQuery();
+        } catch (Exception $e) {
+            return null;
+        }
     }
     public  function  getInfoCartOneUser(int $id=1):?\Doctrine\DBAL\Result{
-        return $this->getFullInfo(['u.id','u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"'],  $id);
+        try {
+            return $this->getFullInfo(['u.id', 'u.name as "user_name"', 'pr.name as "product_name"', 'cat.name as "category_name"'], $id)->executeQuery();
+        } catch (Exception $e) {
+            return null;
+        }
     }
     public  function  getInfoCategoryOneUser(int $id=1):?\Doctrine\DBAL\Result{
-        return $this->getFullInfo(['cat.*'],  $id);
+        try {
+            return $this->getFullInfo(['cat.*'], $id)->executeQuery();
+        } catch (Exception $e) {
+            return null;
+        }
     }
     public  function  getInfoUsersOneProduct(int $id=1):?\Doctrine\DBAL\Result{
-        return $this->getFullInfo(['u.*'],  $id);
+        try {
+            return $this->getFullInfo(['u.*'], $id)->executeQuery();
+        } catch (Exception $e) {
+            return null;
+        }
     }
     public  function  getInfoCategoryIsNotInCartForUser(int $id=1):?\Doctrine\DBAL\Result{
         $result=$this->getInfoCategoryOneUser($id);
@@ -95,10 +111,8 @@ class DBController
             ->setParameters($param)->executeQuery();
 
     }
-    public  function  getFullInfo(array $arr, ?int $id=null): ?\Doctrine\DBAL\Result
+    public  function  getFullInfo(array $arr, ?int $id=null): \Doctrine\DBAL\Query\QueryBuilder
     {
-
-        try {
            $this->queryBuilder
                 ->select($arr)
                 ->from('cart', 'c')
@@ -108,10 +122,6 @@ class DBController
             if(!is_null($id))
                 $this->queryBuilder->where('u.id=?')
                 ->setParameter(0, $id);
-            return $this->queryBuilder->executeQuery();
-        } catch (Exception $e) {
-            return null;
-        }
-
+            return $this->queryBuilder;
     }
 }
