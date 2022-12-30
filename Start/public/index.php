@@ -10,6 +10,7 @@ require_once '../vendor/autoload.php';
 // Подключить необходимые классы
 use App\Controllers\Http\DBController;
 use App\Controllers\Http\DbQuery\DbQuery_1;
+use App\Controllers\Http\DbQuery\DbQuery_2;
 use App\Http\Requests\Request;
 use App\Http\Responses\AbstractResponse;
 use App\Http\Responses\ResponseTypesEnum;
@@ -19,7 +20,7 @@ $dotenv->load();
 var_dump($_ENV['APP_NAME']);
 
 //$users=DBController::getInstance()->getInfoCartOneUser();
-$users=DbQuery_1::Query_10();
+$users=DbQuery_2::Query_7();
 if(!is_null($users))
     DBController::getInstance()->Show($users);
 

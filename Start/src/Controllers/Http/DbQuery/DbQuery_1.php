@@ -10,8 +10,9 @@ class DbQuery_1 extends DBController
     public static function Query_1(): ?\Doctrine\DBAL\Result
     {
         try {
-          return  parent::getInstance()->queryBuilder->select('COUNT(id)')
-                ->from('user')->executeQuery();
+          return  parent::getInstance()->queryBuilder
+              ->select('COUNT(id)')
+              ->from('user')->executeQuery();
         } catch (Exception $e) {
             return null;
         }
