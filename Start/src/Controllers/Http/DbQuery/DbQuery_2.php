@@ -77,6 +77,7 @@ class DbQuery_2 extends DBController
             return null;
         }
     }
+    //test
     public static function Query_8(): ?\Doctrine\DBAL\Result
     {
         try {
