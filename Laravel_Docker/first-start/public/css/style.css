@@ -1,0 +1,9 @@
+.nav-menu:hover{
+    background-color: rgba(1,5,1,50%);
+}
+.nav-menu{
+    background-color: rgb(1,1,1);
+}
+.table-w{
+    max-width: 800px;
+}
